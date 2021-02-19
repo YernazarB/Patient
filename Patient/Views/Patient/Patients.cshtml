@@ -1,0 +1,34 @@
+﻿@model List<Patient.Models.Patient>
+@{
+    ViewBag.Title = "Patients";
+}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">ИИН</th>
+        <th scope="col">ФИО</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Номер телефон</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var patient in Model)
+    {
+        <tr>
+            <th scope="row">@patient.Id</th>
+            <td>@patient.Iin</td>
+            <td>@patient.FullName</td>
+            <td>@patient.Address</td>
+            <td>@patient.PhoneNumber</td>
+            <td>
+                @Html.ActionLink()
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@Html.Partial("AddPatient")
+
+
+

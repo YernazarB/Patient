@@ -1,0 +1,44 @@
+﻿<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddPatientModal">
+    Новая запись
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="AddPatientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Добавить нового пациента</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using(Html.BeginForm("AddPatient", "Patient", "post"))
+                {
+                <div class="form-group">
+                    <label for="iin">ИИН</label>
+                    <input type="text" class="form-control" id="iin" name="iin">
+                </div>
+                <div class="form-group">
+                    <label for="fullName">ФИО</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName">
+                </div>
+                <div class="form-group">
+                    <label for="address">Адрес</label>
+                    <input type="text" class="form-control" id="address" name="address">
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Номер телефона</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                }
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
