@@ -22,7 +22,7 @@
             <td>@patient.Address</td>
             <td>@patient.PhoneNumber</td>
             <td>
-                @Html.ActionLink()
+                @Html.ActionLink("Удалить", $"DeletePatient/{patient.Id}", "Patient")
             </td>
         </tr>
     }

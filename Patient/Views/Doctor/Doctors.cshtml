@@ -1,0 +1,27 @@
+﻿@model List<Patient.Models.Doctor>
+@{
+    ViewBag.Title = "Специалисты";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Спецальность</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doctor in Model)
+        {
+            <tr>
+                <th scope="row">@doctor.Id</th>
+                <td>@doctor.FullName</td>
+                <td>@doctor.Specialty</td>
+                <td>
+                    @Html.ActionLink("Удалить", $"DeleteDoctor/{doctor.Id}", "Doctor")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Partial("AddDoctor")

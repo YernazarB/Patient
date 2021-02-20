@@ -9,5 +9,6 @@ namespace Patient.Models
         }
 
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
     }
 }

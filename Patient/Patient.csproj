@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
@@ -136,7 +137,17 @@
     <Compile Include="Migrations\202102191247518_First.designer.cs">
       <DependentUpon>202102191247518_First.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102192353362_AddDoctorsTable.cs" />
+    <Compile Include="Migrations\202102192353362_AddDoctorsTable.designer.cs">
+      <DependentUpon>202102192353362_AddDoctorsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102200041012_AddIsDeletedColumns.cs" />
+    <Compile Include="Migrations\202102200041012_AddIsDeletedColumns.designer.cs">
+      <DependentUpon>202102200041012_AddIsDeletedColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\ModelContext.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,9 +187,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Patient\Patients.cshtml" />
     <Content Include="Views\Patient\AddPatient.cshtml" />
+    <Content Include="Views\Doctor\Doctors.cshtml" />
+    <Content Include="Views\Doctor\AddDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\BaseModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -196,6 +211,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202102191247518_First.resx">
       <DependentUpon>202102191247518_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102192353362_AddDoctorsTable.resx">
+      <DependentUpon>202102192353362_AddDoctorsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102200041012_AddIsDeletedColumns.resx">
+      <DependentUpon>202102200041012_AddIsDeletedColumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
