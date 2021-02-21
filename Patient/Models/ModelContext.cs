@@ -10,5 +10,6 @@ namespace Patient.Models
 
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<ReceptionHistory> ReceptionHistories { get; set; }
     }
 }
