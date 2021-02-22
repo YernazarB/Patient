@@ -1,0 +1,33 @@
+﻿@model Patient.Dtos.ReceptionHistoryModelDto
+<table class="table" id="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">ИИН пациента</th>
+        <th scope="col">ФИО пациента</th>
+        <th scope="col">Специалисть</th>
+        <th scope="col">ФИО специалиста</th>
+        <th scope="col">Дата</th>
+        <th scope="col">Жалобы</th>
+        <th scope="col">Диагноз</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var receptionHistory in Model.ReceptionHistories)
+    {
+        <tr>
+            <th scope="row">@receptionHistory.Id</th>
+            <td>@receptionHistory.Patient.Iin</td>
+            <td>@receptionHistory.Patient.FullName</td>
+            <td>@receptionHistory.Doctor.Specialty</td>
+            <td>@receptionHistory.Doctor.FullName</td>
+            <td>@receptionHistory.DateTime.ToString("dd.MM.yyyy")</td>
+            <td>@receptionHistory.Complaint</td>
+            <td>@receptionHistory.Diagnosis</td>
+            <td>
+                @Html.ActionLink("Удалить", $"DeleteReceptionHistory/{receptionHistory.Id}", "ReceptionHistories")
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

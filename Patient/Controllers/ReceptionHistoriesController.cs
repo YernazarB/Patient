@@ -20,7 +20,7 @@ namespace Patient.Controllers
                 .Include(x => x.Patient)
                 .OrderBy(x => x.DateTime).ToList();
 
-            var dto = new ReceptionHistoryDto
+            var dto = new ReceptionHistoryModelDto
             {
                 Doctors = doctors,
                 Patients = patients,
@@ -39,11 +39,54 @@ namespace Patient.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddReceptionHistory(ReceptionHistory receptionHistory)
+        public ActionResult AddReceptionHistory(ReceptionHistoryDto receptionHistoryDto)
         {
+            var patient =
+                _db.Patients.FirstOrDefault(x => !x.IsDeleted && x.FullName + " / " + x.Iin == receptionHistoryDto.PatientName);
+            var doctor = _db.Doctors.FirstOrDefault(x => !x.IsDeleted && x.FullName + " / " + x.Specialty == receptionHistoryDto.DoctorName);
+            if (patient == null || doctor == null)
+            {
+                return HttpNotFound();
+            }
+
+            var receptionHistory = new ReceptionHistory
+            {
+                Complaint = receptionHistoryDto.Complaint,
+                DateTime = receptionHistoryDto.DateTime,
+                Diagnosis = receptionHistoryDto.Diagnosis,
+                DoctorId = doctor.Id,
+                PatientId = patient.Id
+            };
+
             _db.ReceptionHistories.Add(receptionHistory);
             _db.SaveChanges();
             return RedirectToAction("ReceptionHistories");
+        }
+
+        [HttpPost]
+        public ActionResult SearchHistories(string searchText)
+        {
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                return RedirectToAction("ReceptionHistories");
+            }
+
+            var patients = _db.Patients.Where(x => !x.IsDeleted).ToList();
+            var doctors = _db.Doctors.Where(x => !x.IsDeleted).ToList();
+            var receptionHistories = _db.ReceptionHistories
+                .Where(x => !x.IsDeleted && x.Patient.FullName.Contains(searchText))
+                .Include(x => x.Doctor)
+                .Include(x => x.Patient)
+                .OrderBy(x => x.DateTime).ToList();
+
+            var dto = new ReceptionHistoryModelDto
+            {
+                Doctors = doctors,
+                Patients = patients,
+                ReceptionHistories = receptionHistories
+            };
+
+            return View("ReceptionHistories", dto);
         }
     }
 }

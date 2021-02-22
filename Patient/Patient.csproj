@@ -132,6 +132,7 @@
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\ReceptionHistoriesController.cs" />
     <Compile Include="Dtos\ReceptionHistoryDto.cs" />
+    <Compile Include="Dtos\ReceptionHistoryModelDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,6 +198,7 @@
     <Content Include="Views\Doctor\Doctors.cshtml" />
     <Content Include="Views\Doctor\AddDoctor.cshtml" />
     <Content Include="Views\ReceptionHistories\ReceptionHistories.cshtml" />
+    <Content Include="Views\ReceptionHistories\SearchHistories.cshtml" />
     <Content Include="Views\ReceptionHistories\AddReceptionHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
